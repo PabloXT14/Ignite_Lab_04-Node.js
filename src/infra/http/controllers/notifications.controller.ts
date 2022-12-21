@@ -2,6 +2,7 @@ import { PrismaService } from '@infra/database/prisma/prisma.service';
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { SendNotification } from '../../../../src/application/use-cases/send-notification';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
+import { NotificationViewModel } from '../view-models/notification-view-model';
 
 @Controller('notifications')
 export class NotificationsController {
@@ -18,12 +19,7 @@ export class NotificationsController {
     });
 
     return {
-      notification: {
-        id: notification.id,
-        content: notification.content,
-        category: notification.content.value,
-        recipientId: notification.recipientId,
-      },
+      notification: NotificationViewModel.toHTTP(notification),
     };
   }
 

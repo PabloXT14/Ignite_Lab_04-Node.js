@@ -16,6 +16,7 @@ model Notifications {
   content     String
   category    String
   readAt      DateTime?
+  canceledAt  DateTime?
   createdAt   DateTime  @default(now())
 
   @@index([recipientId]) // Falando que o campo recipientId servirá como index de busca por dados no DB
