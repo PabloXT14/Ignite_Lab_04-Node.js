@@ -12,7 +12,7 @@ interface GetRecipientNotificationsResponse {
 
 @Injectable()
 export class GetRecipientNotifications {
-  constructor(private notificationRepository: NotificationsRepository) {}
+  constructor(private notificationsRepository: NotificationsRepository) {}
 
   async execute(
     request: GetRecipientNotificationsRequest,
@@ -20,7 +20,7 @@ export class GetRecipientNotifications {
     const { recipientId } = request;
 
     const notifications =
-      await this.notificationRepository.findManyByRecipientId(recipientId);
+      await this.notificationsRepository.findManyByRecipientId(recipientId);
 
     return {
       notifications,
